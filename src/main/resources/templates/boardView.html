@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,22 +90,23 @@
         background-color: #4169e1;
         border-color: #2078d2
     }
+
 </style>
 <body>
 <div class="ui_container">
-    <form action="/board/boardWriteProcess" method="post">
+
         <div class="ui_border">
             <h3 class="border_tit">Write</h3>
             <div class="border_cont">
-                <input name="boardTitle" type="text" placeholder="제목을 입력하세요" class="inq_field"/>
-                <textarea placeholder="내용을 입력하세요" name="boardContent" id="" cols="30" rows="10"></textarea>
+                <p  th:text="${board.boardTitle}"class="inq_field"></p>
+                <p th:text="${board.boardContent}"cols="30" rows="10"></p>
             </div>
             <div class="btn_area">
-                <button type="submit" class="ui_btn btn_inline">취소</button>
-                <button type="submit" class="ui_btn btn_inline btn_emph">등록</button>
+                <a  th:href="@{/board/delete(boardIndex=${board.boardIndex})}" class="ui_btn btn_inline">삭제</a>
+                <a th:href="@{/board/modify/{boardIndex}(boardIndex = ${board.boardIndex})}" class="ui_btn btn_inline btn_emph">수정</a>
             </div>
         </div>
-    </form>
+
 </div>
 </body>
 </html>
